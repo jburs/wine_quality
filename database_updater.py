@@ -72,7 +72,8 @@ def database_update(red_data, white_data, all_data):
         "sulphates" FLOAT(2),
         "alcohol" FLOAT(1),
         "quality" SMALLINT,
-        "type" SMALLINT,
+        "red" SMALLINT,
+        "white" SMALLINT,
         PRIMARY KEY ("id")
         );''')
     print("red wine table created successfully")
@@ -94,7 +95,8 @@ def database_update(red_data, white_data, all_data):
         "sulphates" FLOAT(2),
         "alcohol" FLOAT(1),
         "quality" SMALLINT,
-        "type" SMALLINT,
+        "red" SMALLINT,
+        "white" SMALLINT,
         PRIMARY KEY ("id")
         );''')
     print("white wine table created successfully")
@@ -116,7 +118,8 @@ def database_update(red_data, white_data, all_data):
         "sulphates" FLOAT(2),
         "alcohol" FLOAT(1),
         "quality" SMALLINT,
-        "type" SMALLINT,
+        "red" SMALLINT,
+        "white" SMALLINT,
         PRIMARY KEY ("id")
         );''')
     print("all wine table created successfully")
@@ -131,7 +134,7 @@ def database_update(red_data, white_data, all_data):
     cols = ','.join(list(red_data.columns))
 
     # SQL quert to execute
-    query  = "INSERT INTO %s(%s) VALUES(%%s,%%s,%%s, %%s, %%s,%%s,%%s, %%s, %%s,%%s,%%s, %%s, %%s, %%s)" % ('red_wine', cols)
+    query  = "INSERT INTO %s(%s) VALUES(%%s,%%s,%%s, %%s, %%s,%%s,%%s, %%s, %%s,%%s,%%s, %%s, %%s, %%s, %%s)" % ('red_wine', cols)
     cursor = con.cursor()
     try:
         cursor.executemany(query, tuples)
@@ -151,7 +154,7 @@ def database_update(red_data, white_data, all_data):
     cols = ','.join(list(white_data.columns))
 
     # SQL quert to execute
-    query  = "INSERT INTO %s(%s) VALUES(%%s,%%s,%%s, %%s, %%s,%%s,%%s, %%s, %%s,%%s,%%s, %%s, %%s, %%s)" % ('white_wine', cols)
+    query  = "INSERT INTO %s(%s) VALUES(%%s,%%s,%%s, %%s, %%s,%%s,%%s, %%s, %%s,%%s,%%s, %%s, %%s, %%s, %%s)" % ('white_wine', cols)
     cursor = con.cursor()
     try:
         cursor.executemany(query, tuples)
@@ -171,7 +174,7 @@ def database_update(red_data, white_data, all_data):
     cols = ','.join(list(all_data.columns))
 
     # SQL quert to execute
-    query  = "INSERT INTO %s(%s) VALUES(%%s,%%s,%%s, %%s, %%s,%%s,%%s, %%s, %%s,%%s,%%s, %%s, %%s, %%s)" % ('all_wine', cols)
+    query  = "INSERT INTO %s(%s) VALUES(%%s,%%s,%%s, %%s, %%s,%%s,%%s, %%s, %%s,%%s,%%s, %%s, %%s, %%s, %%s)" % ('all_wine', cols)
     cursor = con.cursor()
     try:
         cursor.executemany(query, tuples)
@@ -183,3 +186,5 @@ def database_update(red_data, white_data, all_data):
         return 1
     print("execute_many() done")
     cursor.close()
+
+    con.close()
